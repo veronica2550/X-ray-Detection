@@ -1,0 +1,7 @@
+streamlit
+streamlit-option-menu
+streamlit-tags
+os
+shutil
+cv2
+numpy

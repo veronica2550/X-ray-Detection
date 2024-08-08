@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./result_page",
+        "./manage_page",
+        "./edit_page"
+    ]
+}
