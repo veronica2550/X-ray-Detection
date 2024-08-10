@@ -1,17 +1,12 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-from page.manage_page.create_setting import object_setting_UI
+from page.manage_page.object_setting import object_setting_UI
 from page.result_page.detection_result import detection_result_UI
 from page.manage_page.object_manage import object_manage_UI
 from page.edit_page.result_edit import result_manage_UI
 
-def navigate_to_page(page_name):
-    st.session_state.page = page_name
-    st.experimental_rerun()
-
-with st.sidebar:
-    button_style = """
+button_style = """
         <style>
         div.stButton > button {
             width: 100%;
@@ -22,16 +17,34 @@ with st.sidebar:
         }
         </style>
     """
-    st.markdown(button_style, unsafe_allow_html=True)
-    selected = option_menu("Shark Homels", ["위해물품 감지", '감지 물체 관리', '감지 결과 관리'], 
-        icons=['cone-striped', 'bag-dash-fill', 'intersect'], menu_icon="award fill", default_index=0)
+st.markdown(button_style, unsafe_allow_html=True)
 
-if selected == "위해물품 감지":
+# Initialize session state
+if 'page' not in st.session_state:
+    st.session_state.page = "위해물품 감지"
+
+# Sidebar menu
+with st.sidebar:
+    if st.session_state.page in ["위해물품 감지", '감지 물체 관리', '감지 결과 관리']:
+        st.session_state.page = option_menu("Shark Homels", ["위해물품 감지", '감지 물체 관리', '감지 결과 관리'], 
+                            icons=['cone-striped', 'bag-dash-fill', 'intersect'], 
+                            menu_icon="award fill", 
+                            default_index=0)
+
+# Update page state based on sidebar selection
+if st.session_state.page == "위해물품 감지":
     uploaded_file = st.sidebar.file_uploader("Upload a video", type=["mp4", "mov", "avi"])
     detection_result_UI()
-
-if selected == "감지 결과 관리":
+    
+elif st.session_state.page == "감지 결과 관리":
     result_manage_UI()
-
-if selected == "감지 물체 관리":
+elif st.session_state.page == "감지 물체 관리":
     object_manage_UI()
+
+elif st.session_state.page == "감지 물체 세팅":
+    object_setting_UI()
+    
+    # D 화면에서 B 화면으로 돌아가는 버튼 배치
+    if st.button("저장"):
+        st.session_state.page = "감지 물체 관리"
+        st.rerun()
