@@ -1,6 +1,7 @@
 streamlit
 streamlit-option-menu
 streamlit-tags
+streamlit-image-select
 os
 shutil
 cv2

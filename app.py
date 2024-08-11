@@ -6,6 +6,8 @@ from page.result_page.detection_result import detection_result_UI
 from page.manage_page.object_manage import object_manage_UI
 from page.edit_page.result_edit import result_manage_UI
 
+st.set_page_config(layout="wide")
+
 button_style = """
         <style>
         div.stButton > button {
