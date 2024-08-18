@@ -1,6 +1,5 @@
 import streamlit as st
 from object import object
-from page.manage_page.object_setting import object_setting_UI
 
 def object_manage_UI():
     # Initialize session state if not already
@@ -37,4 +36,4 @@ def object_manage_UI():
     # Update the default values based on the selected options
     if selected_options != st.session_state.default_selected_values:
         st.session_state.default_selected_values = selected_options
-        st.experimental_rerun()
+        st.rerun()
