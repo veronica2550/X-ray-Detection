@@ -39,15 +39,21 @@ with st.sidebar:
                             menu_icon="award fill", 
                             default_index=default_index)
         
-st.session_state.from_save = False
+#st.session_state.from_save = False
 
 # Update page state based on sidebar selection
 if st.session_state.page == "위해물품 감지":
+    if st.session_state.from_save == True:
+        st.session_state.from_save = False
+        st.rerun()
+    
+    st.session_state.from_save = False
     uploaded_file = st.sidebar.file_uploader("Upload a video", type=["mp4", "mov", "avi"])
     detection_result_UI()
     
 elif st.session_state.page == "감지 결과 관리":
     result_manage_UI()
+    
 elif st.session_state.page == "감지 물체 관리":
     object_manage_UI()
 
@@ -59,3 +65,6 @@ elif st.session_state.page == "감지 물체 세팅":
         st.session_state.page = "감지 물체 관리"
         st.session_state.from_save = True
         st.rerun()
+
+st.write(st.session_state.page)
+st.write(st.session_state.from_save)
