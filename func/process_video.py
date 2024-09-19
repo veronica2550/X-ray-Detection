@@ -7,18 +7,18 @@ import numpy as np
 def process_video(video_path):
 
     # 출력 폴더가 존재하지 않으면 생성
-    frames_dir = "video_2_frame"
-    frames_dir_yolo = "frame_2_yolo"
+    frames_dir = "frames"
+    #frames_dir_yolo = "frame_2_yolo"
     
     # 폴더가 존재하면 전체 데이터 삭제
     if os.path.exists(frames_dir):
         shutil.rmtree(frames_dir)
-        shutil.rmtree(frames_dir_yolo)
+        #shutil.rmtree(frames_dir_yolo)
     
     # 폴더가 존재하지 않으면 생성
     if not os.path.exists(frames_dir):
         os.makedirs(frames_dir)
-        os.makedirs(frames_dir_yolo)
+        #os.makedirs(frames_dir_yolo)
 
     # 동영상 캡처 객체 생성
     cap = cv2.VideoCapture(video_path)
@@ -59,11 +59,12 @@ def process_video(video_path):
                 
                 if last_saved_frame is None:
                     # 첫 번째 비교에서는 프레임을 저장하고 초기화
-                    frame_filename = os.path.join(frames_dir, f'frame_{frame_number}.jpg')
+                    frame_filename = os.path.join(frames_dir, f'frame_{str(frame_number).zfill(6)}.jpg')
                     cv2.imwrite(frame_filename, current_frame)
                     print(f'Saved initial frame: {frame_filename}')
                     last_saved_frame = current_gray.copy()
                     saved = True
+                    
                 else:
                     # 현재 프레임과 마지막 저장된 프레임의 차이 계산
                     difference = cv2.absdiff(last_saved_frame, current_gray)
@@ -71,7 +72,7 @@ def process_video(video_path):
                     
                     if np.sum(difference) == 0 and not saved:
                         # 동일한 프레임이 발견되었고 이전에 저장하지 않은 경우
-                        frame_filename = os.path.join(frames_dir, f'frame_{frame_number}.jpg')
+                        frame_filename = os.path.join(frames_dir, f'frame_{str(frame_number).zfill(6)}.jpg')
                         cv2.imwrite(frame_filename, current_frame)
                         print(f'Saved identical frame: {frame_filename}')
                         saved = True

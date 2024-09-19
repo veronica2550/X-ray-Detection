@@ -12,10 +12,12 @@ def detection_result_UI():
     num_images = len(image_paths)
     images_per_row = 5
 
-    st.write(f"총 {num_images}개의 이미지가 있습니다.")
+    if num_images != 0:
+        st.write(f"총 {num_images}개의 이미지가 있습니다.")
 
     if num_images == 0:
-        st.write("이미지가 없습니다.")
+        st.write("영상을 업로드 해주세요")
+        st.image("assets/vid_upload.jpg")
         return
 
     num_rows = (num_images + images_per_row - 1) // images_per_row
@@ -42,7 +44,6 @@ def detection_result_UI():
         if st.button("다음 >"):
             st.session_state.row_slider = min(num_rows - 1, st.session_state.row_slider + 1)
             st.rerun()
-
 
     display_images(image_paths, start_idx=st.session_state.row_slider * images_per_row, images_per_row=images_per_row)
 

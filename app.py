@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+from func.file_upload import file_upload
+# from func.process_video import process_video
 from page.manage_page.object_setting import object_setting_UI
 from page.result_page.detection_result import detection_result_UI
 from page.manage_page.object_manage import object_manage_UI
@@ -26,6 +28,9 @@ if 'page' not in st.session_state:
     st.session_state.page = "위해물품 감지"
     st.session_state.from_save = False
 
+if 'file_name_store' not in st.session_state:
+    st.session_state.file_name_store = ""
+
 # Sidebar menu
 with st.sidebar:
     if st.session_state.from_save:
@@ -49,6 +54,11 @@ if st.session_state.page == "위해물품 감지":
     
     st.session_state.from_save = False
     uploaded_file = st.sidebar.file_uploader("Upload a video", type=["mp4", "mov", "avi"])
+    if uploaded_file:
+        print(st.session_state.file_name_store)
+        print(uploaded_file.name)
+        if st.session_state.file_name_store != uploaded_file.name:
+            file_upload(uploaded_file)
     detection_result_UI()
     
 elif st.session_state.page == "감지 결과 관리":

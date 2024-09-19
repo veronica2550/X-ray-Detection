@@ -1,0 +1,4 @@
+frames/
+yolo_annotations/
+test*
+*.mp4
