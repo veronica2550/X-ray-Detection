@@ -41,5 +41,8 @@ object = {
   39: "Camera",
   40: "Camcorder",
   41: "SD Card",
-  42: "Fretsaw"
+  42: "Fretsaw",
+  43: ""
 }
+
+new_set = ['Alcohol', 'Knife', 'Portable Gas', 'Lighter', 'Camera', 'Camcorder', 'SD Card'] 

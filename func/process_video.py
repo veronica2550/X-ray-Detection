@@ -11,8 +11,8 @@ def process_video(video_path):
     #frames_dir_yolo = "frame_2_yolo"
     
     # 폴더가 존재하면 전체 데이터 삭제
-    if os.path.exists(frames_dir):
-        shutil.rmtree(frames_dir)
+    # if os.path.exists(frames_dir):
+    #     shutil.rmtree(frames_dir)
         #shutil.rmtree(frames_dir_yolo)
     
     # 폴더가 존재하지 않으면 생성
