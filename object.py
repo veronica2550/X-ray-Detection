@@ -41,4 +41,5 @@ object = {
   39: "Camera",
   40: "Camcorder",
   41: "SD Card",
+  42: "Fretsaw"
 }

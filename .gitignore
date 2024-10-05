@@ -1,5 +1,6 @@
 frames/
-yolo_annotations/
+annotation/
+descriptions/
 test*
 *.mp4
 .venv

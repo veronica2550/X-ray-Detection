@@ -14,7 +14,7 @@ def object_manage_UI():
     st.write("---")
 
     # API로 받아올 부분
-    #default_selected_values = ["Hammer", "SSD", "Camera"]
+    st.session_state.default_selected_values = list(object.values())
 
     num_columns = 4
     columns = st.columns(num_columns)

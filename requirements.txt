@@ -9,3 +9,4 @@ PILLOW
 pandas
 tqdm
 pascal_voc_writer
+streamlit-img-label

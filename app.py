@@ -38,9 +38,9 @@ with st.sidebar:
     else:
         default_index = 0  # '위해물품 감지' for first load or normal navigation
 
-    if st.session_state.page in ["위해물품 감지", '감지 물체 관리', '감지 결과 관리']:
-        st.session_state.page = option_menu("Shark Homels", ["위해물품 감지", '감지 물체 관리', '감지 결과 관리'], 
-                            icons=['cone-striped', 'bag-dash-fill', 'intersect'], 
+    if st.session_state.page in ["위해물품 감지", '감지 물체 관리', '감지 결과 관리', '챗봇']:
+        st.session_state.page = option_menu("Shark Holmes", ["위해물품 감지", '감지 물체 관리', '감지 결과 관리', '챗봇'], 
+                            icons=['cone-striped', 'bag-dash-fill', 'intersect', 'chat-right-text-fill'], 
                             menu_icon="award fill", 
                             default_index=default_index)
         
@@ -76,5 +76,8 @@ elif st.session_state.page == "감지 물체 세팅":
         st.session_state.from_save = True
         st.rerun()
 
-st.write(st.session_state.page)
-st.write(st.session_state.from_save)
+elif st.session_state.page == '챗봇':
+    st.write("챗봇")
+
+#st.write(st.session_state.page)
+#st.write(st.session_state.from_save)
