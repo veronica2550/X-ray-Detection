@@ -7,6 +7,7 @@ from page.manage_page.object_setting import object_setting_UI
 from page.result_page.detection_result import detection_result_UI
 from page.manage_page.object_manage import object_manage_UI
 from page.edit_page.result_edit import result_manage_UI
+from page.chatbot_page.chat_bot import chatbot_UI
 
 st.set_page_config(layout="wide")
 
@@ -77,7 +78,7 @@ elif st.session_state.page == "감지 물체 세팅":
         st.rerun()
 
 elif st.session_state.page == '챗봇':
-    st.write("챗봇")
+    chatbot_UI()
 
 #st.write(st.session_state.page)
 #st.write(st.session_state.from_save)
